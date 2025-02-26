@@ -1,13 +1,12 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/vue-starter-kit",
+    "name": "4sitemedia/hockey",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "NHL Schedule Import Generator",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "license": "MIT",
     "require": {
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0",
@@ -67,7 +66,6 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
     },
