@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "4sitemedia/hockey",
     "type": "project",
-    "description": "NHL Schedule Import Generator",
+    "description": "NHL Schedules",
     "keywords": [
         "laravel",
         "framework"
