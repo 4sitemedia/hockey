@@ -3,7 +3,7 @@ import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
-    <div class="mx-auto w-7xl">
+    <div class="mx-auto flex h-dvh w-7xl flex-col justify-between">
         <slot />
         <Footer />
     </div>
