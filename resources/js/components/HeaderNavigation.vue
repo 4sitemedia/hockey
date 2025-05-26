@@ -11,7 +11,11 @@ const links: Array<{ label: string; url: string }> = [
     { label: 'Teams', url: URLS.TEAMS },
 ];
 
-const linkCSS = (url: string) => (page.url === url ? 'bg-gray-700 text-gray-100' : '');
+const linkCSS = (url: string) => {
+    return page.url === url || (url.length > 1 && page.url.includes(url))
+        ? 'bg-gray-700 text-gray-100'
+        : '';
+};
 </script>
 
 <template>
