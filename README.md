@@ -1,4 +1,4 @@
 Laravel / Vue NHL Schedule Viewer:\
-https://4sitemedia.com/hockey/
+https://hockey.4sitemedia.com/
 
 &copy; 4SiteMedia LLC. All Rights Reserved.

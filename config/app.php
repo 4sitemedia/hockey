@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://4sitemedia.com/hockey/'),
+    'url' => env('APP_URL', 'https://hockey.4sitemedia.com/'),
 
     /*
     |--------------------------------------------------------------------------
