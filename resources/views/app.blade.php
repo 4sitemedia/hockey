@@ -6,6 +6,18 @@
 
     <title inertia>{{ config('app.name', 'NHL Schedules') }}</title>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('app.google', '') }}"></script>
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', '{{ config('app.google', '') }}');
+    </script>
+
     @routes
     @vite(['resources/js/app.ts'])
     @inertiaHead
