@@ -3,14 +3,14 @@ import { useScheduleData } from '@/composables/schedule';
 import { useTeamData } from '@/composables/teams';
 import { GameInterface } from '@/types';
 
-interface TeamScheduleProps {
+interface ScheduleTableProps {
     games: Array<GameInterface>;
 }
 
-const props = defineProps<TeamScheduleProps>();
+const props = defineProps<ScheduleTableProps>();
 
 const { getDate, getGameType } = useScheduleData();
-const { getTeamLocation, getTeamName } = useTeamData();
+const { getTeamFullName } = useTeamData();
 </script>
 
 <template>
@@ -30,10 +30,10 @@ const { getTeamLocation, getTeamName } = useTeamData();
             <tr v-for="(game, index) in props.games" :key="index" class="odd:bg-gray-100">
                 <td>{{ getGameType(game) }}</td>
                 <td>
-                    {{ getTeamLocation(game.homeTeamId) + ' ' + getTeamName(game.homeTeamId) }}
+                    {{ getTeamFullName(game.homeTeamId) }}
                 </td>
                 <td>
-                    {{ getTeamLocation(game.awayTeamId) + ' ' + getTeamName(game.awayTeamId) }}
+                    {{ getTeamFullName(game.awayTeamId) }}
                 </td>
                 <td>{{ game.venue }}</td>
                 <td>{{ getDate(game.startTime) }}</td>

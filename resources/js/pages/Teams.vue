@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HeaderNavigation from '@/components/HeaderNavigation.vue';
-import TeamSchedule from '@/components/TeamSchedule.vue';
+import ScheduleTable from '@/components/ScheduleTable.vue';
 import TeamScheduleFilter from '@/components/TeamScheduleFilter.vue';
 import TeamSelect from '@/components/TeamSelect.vue';
 import { useScheduleData } from '@/composables/schedule';
@@ -21,6 +21,6 @@ const shouldDisplay: ComputedRef<boolean> = computed((): boolean => {
             <TeamScheduleFilter v-if="shouldDisplay" />
         </HeaderNavigation>
 
-        <TeamSchedule v-if="shouldDisplay" :games="filteredGames" class="mt-4" />
+        <ScheduleTable v-if="shouldDisplay" :games="filteredGames" class="mt-4" />
     </BaseLayout>
 </template>

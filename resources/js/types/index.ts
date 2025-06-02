@@ -12,7 +12,9 @@ export interface GameInterface {
 }
 
 export interface TeamInterface {
+    active: boolean;
     code: string;
+    fullName: string;
     id: number;
     location: string;
     name: string;

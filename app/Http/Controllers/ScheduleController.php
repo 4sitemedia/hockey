@@ -34,7 +34,6 @@ class ScheduleController extends Controller
             'dates' => $schedule->getDates(),
             'games' => $schedule->getGamesArray(),
             'teamMap' => $teams->getTeamMap(),
-            'teams' => $teams->getTeamsArray()
         ]);
     }
 }

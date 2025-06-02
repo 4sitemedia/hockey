@@ -61,9 +61,9 @@ class Teams
      * @param string $field
      * @return array
      */
-    public function sortTeams(array $teams, string $field = 'location'): array
+    public function sortTeams(array $teams, string $field = 'fullName'): array
     {
-        if (!in_array($field, ['code', 'id', 'location', 'name'])) {
+        if (!in_array($field, ['code', 'fullName', 'id', 'location', 'name'])) {
             return $teams;
         }
 

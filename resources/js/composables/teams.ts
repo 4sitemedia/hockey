@@ -1,10 +1,10 @@
 import { TeamInterface } from '@/types';
 import { usePage } from '@inertiajs/vue3';
-import { Ref, ref } from 'vue';
+import { computed, ComputedRef, Ref, ref } from 'vue';
 
 interface useTeamDataInterface {
-    getTeamLocation: (id: number) => string;
-    getTeamName: (id: number) => string;
+    filteredTeams: ComputedRef<Array<TeamInterface>>;
+    getTeamFullName: (id: number) => string;
     selectedTeam: Ref<string>;
     teams: Array<TeamInterface>;
 }
@@ -18,17 +18,17 @@ export function useTeamData(): useTeamDataInterface {
     };
     const teams: Array<TeamInterface> = page.props.teams as Array<TeamInterface>;
 
-    const getTeamLocation = (id: number): string => {
-        return teamMap[id]?.location ?? '';
-    };
+    const filteredTeams: ComputedRef<Array<TeamInterface>> = computed(() => {
+        return teams.filter((element) => element.active);
+    });
 
-    const getTeamName = (id: number): string => {
-        return teamMap[id]?.name ?? '';
+    const getTeamFullName = (id: number): string => {
+        return teamMap[id]?.fullName ?? '';
     };
 
     return {
-        getTeamLocation,
-        getTeamName,
+        filteredTeams,
+        getTeamFullName,
         selectedTeam,
         teams,
     };

@@ -40,15 +40,16 @@ class NHLTeams
                 continue;
             }
 
-            $team = array_find($teamData['teams'], function (array $element) use ($teamData) {
-                return $element['fullName'] === $teamData['fullName'];
-            });
-
-            if (!isset($team)) {
-                continue;
+            foreach ($teamData['teams'] as $team) {
+                $teams[] = new Team(
+                    active: $team['fullName'] === $teamData['fullName'],
+                    code: $team['triCode'],
+                    fullName: $team['fullName'],
+                    id: $team['id'],
+                    location: $teamData['teamPlaceName'],
+                    name: $teamData['teamCommonName']
+                );
             }
-
-            $teams[] = new Team($team['triCode'], $team['id'], $teamData['teamPlaceName'], $teamData['teamCommonName']);
         }
 
         return $teams;

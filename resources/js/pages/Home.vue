@@ -20,7 +20,6 @@ import BaseLayout from '@/layouts/app/BaseLayout.vue';
                 <li>Add ability to select date with a calendar</li>
                 <li>Add support for previous seasons</li>
                 <li>Export schedule</li>
-                <li>Fix team mapping</li>
                 <li>Unit Tests</li>
             </ul>
         </div>
