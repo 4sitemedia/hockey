@@ -8,18 +8,17 @@ use Illuminate\Support\Facades\Cache;
 class DateSchedule extends AbstractSchedule
 {
     protected string $currentDate = '';
+
     protected string $nextDate = '';
+
     protected string $previousDate = '';
 
     /**
      * get the schedule for the given date from the api
-     *
-     * @param string $value
-     * @return void
      */
     public function fetchSchedule(string $value): void
     {
-        $scheduleAPI = new NHLSchedule();
+        $scheduleAPI = new NHLSchedule;
 
         $response = Cache::remember("$value-scores", 14400, function () use ($scheduleAPI, $value) {
             return $scheduleAPI->getDateSchedule($value);
@@ -33,8 +32,6 @@ class DateSchedule extends AbstractSchedule
 
     /**
      * get the dates related to the most recent request
-     *
-     * @return array
      */
     public function getDates(): array
     {

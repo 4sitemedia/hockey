@@ -16,27 +16,24 @@ class TeamController extends Controller
      */
     public function index(): Response
     {
-        $teams = new Teams();
+        $teams = new Teams;
         $teams->fetchTeams();
 
         return Inertia::render('Teams', [
             'teamMap' => $teams->getTeamMap(),
-            'teams' => $teams->getTeamsArray()
+            'teams' => $teams->getTeamsArray(),
         ]);
     }
 
     /**
      * return the games for the given team
-     *
-     * @param $team
-     * @return Response
      */
     public function games($team): Response
     {
         $games = [];
 
-        if (!empty($team)) {
-            $schedule = new TeamSchedule();
+        if (! empty($team)) {
+            $schedule = new TeamSchedule;
             $schedule->fetchSchedule($team);
 
             $games = $schedule->getGamesArray();

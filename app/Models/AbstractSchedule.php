@@ -10,8 +10,6 @@ abstract class AbstractSchedule
 
     /**
      * convert the game data to arrays
-     *
-     * @return array
      */
     public function getGamesArray(): array
     {

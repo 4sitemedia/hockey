@@ -17,7 +17,7 @@ class Teams
     public function fetchTeams(): void
     {
         $this->teams = Cache::remember('teams', 86400, function () {
-            $teamsAPI = new NHLTeams();
+            $teamsAPI = new NHLTeams;
             $response = $teamsAPI->getTeams();
 
             $teams = $teamsAPI->parseResponse($response);
@@ -28,8 +28,6 @@ class Teams
 
     /**
      * get an array of teams mapped by id
-     *
-     * @return array
      */
     public function getTeamMap(): array
     {
@@ -44,8 +42,6 @@ class Teams
 
     /**
      * return the team data as an array
-     *
-     * @return array
      */
     public function getTeamsArray(): array
     {
@@ -56,14 +52,10 @@ class Teams
 
     /**
      * sort the teams based on the given field
-     *
-     * @param array $teams
-     * @param string $field
-     * @return array
      */
     public function sortTeams(array $teams, string $field = 'fullName'): array
     {
-        if (!in_array($field, ['code', 'fullName', 'id', 'location', 'name'])) {
+        if (! in_array($field, ['code', 'fullName', 'id', 'location', 'name'])) {
             return $teams;
         }
 
@@ -73,5 +65,4 @@ class Teams
 
         return $teams;
     }
-
 }

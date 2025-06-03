@@ -11,13 +11,10 @@ class ScheduleController extends Controller
 {
     /**
      * render the schedule for the given date
-     *
-     * @param string|null $date
-     * @return Response
      */
     public function index(?string $date = null): Response
     {
-        $teams = new Teams();
+        $teams = new Teams;
         $teams->fetchTeams();
 
         try {
@@ -27,7 +24,7 @@ class ScheduleController extends Controller
             $date = 'now';
         }
 
-        $schedule = new DateSchedule();
+        $schedule = new DateSchedule;
         $schedule->fetchSchedule($date);
 
         return Inertia::render('Schedule', [

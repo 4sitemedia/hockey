@@ -11,8 +11,6 @@ class NHLTeams
 
     /**
      * get the teams
-     *
-     * @return array
      */
     public function getTeams(): array
     {
@@ -23,20 +21,17 @@ class NHLTeams
 
     /**
      * parse given teams api response
-     *
-     * @param array $response
-     * @return array
      */
     public function parseResponse(array $response): array
     {
-        if (!isset($response['data'])) {
+        if (! isset($response['data'])) {
             return [];
         }
 
         $teams = [];
 
         foreach ($response['data'] as $teamData) {
-            if (!empty($teamData['lastSeason'])) {
+            if (! empty($teamData['lastSeason'])) {
                 continue;
             }
 

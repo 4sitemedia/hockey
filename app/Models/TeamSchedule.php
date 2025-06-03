@@ -9,13 +9,10 @@ class TeamSchedule extends AbstractSchedule
 {
     /**
      * get the schedule for the given team from the api
-     *
-     * @param string $value
-     * @return void
      */
     public function fetchSchedule(string $value): void
     {
-        $scheduleAPI = new NHLSchedule();
+        $scheduleAPI = new NHLSchedule;
 
         $response = Cache::remember("$value-schedule", 86400, function () use ($scheduleAPI, $value) {
             return $scheduleAPI->getTeamSchedule($value);
