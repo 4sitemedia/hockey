@@ -14,6 +14,8 @@ class NHLSchedule
 
     /**
      * get the schedule for the given date
+     *
+     * @return array<string, mixed>
      */
     public function getDateSchedule(string $date): array
     {
@@ -25,6 +27,8 @@ class NHLSchedule
 
     /**
      * get the schedule for the given team
+     *
+     * @return array<string, mixed>
      */
     public function getTeamSchedule(string $team): array
     {
@@ -34,6 +38,12 @@ class NHLSchedule
         return $response->json();
     }
 
+    /**
+     * parse the given schedule api response
+     *
+     * @param  array<string, mixed>  $response
+     * @return array<Game>
+     */
     public function parseResponse(array $response): array
     {
         if (! isset($response['games'])) {

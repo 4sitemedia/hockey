@@ -5,8 +5,14 @@ namespace App\Models;
 use App\Http\External\NHLTeams;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * @property array<Team> $name
+ */
 class Teams
 {
+    /**
+     * @var array<Team>
+     */
     private array $teams = [];
 
     /***
@@ -16,7 +22,7 @@ class Teams
      */
     public function fetchTeams(): void
     {
-        $this->teams = Cache::remember('teams', 86400, function () {
+        $this->teams = Cache::remember('teams', 86400, function (): array {
             $teamsAPI = new NHLTeams;
             $response = $teamsAPI->getTeams();
 
@@ -28,6 +34,8 @@ class Teams
 
     /**
      * get an array of teams mapped by id
+     *
+     * @return array<int, array<string, mixed>>
      */
     public function getTeamMap(): array
     {
@@ -42,6 +50,8 @@ class Teams
 
     /**
      * return the team data as an array
+     *
+     * @return array<array<string, mixed>>
      */
     public function getTeamsArray(): array
     {
@@ -52,6 +62,9 @@ class Teams
 
     /**
      * sort the teams based on the given field
+     *
+     * @param  array<Team>  $teams
+     * @return array<Team>
      */
     public function sortTeams(array $teams, string $field = 'fullName'): array
     {

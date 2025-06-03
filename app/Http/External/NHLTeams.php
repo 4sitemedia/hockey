@@ -11,6 +11,8 @@ class NHLTeams
 
     /**
      * get the teams
+     *
+     * @return array<string, array<string, mixed>>
      */
     public function getTeams(): array
     {
@@ -20,7 +22,10 @@ class NHLTeams
     }
 
     /**
-     * parse given teams api response
+     * parse the given teams api response
+     *
+     * @param  array<string, array<string, mixed>>  $response
+     * @return array<Team>
      */
     public function parseResponse(array $response): array
     {

@@ -28,7 +28,7 @@ class TeamController extends Controller
     /**
      * return the games for the given team
      */
-    public function games($team): Response
+    public function games(?string $team): Response
     {
         $games = [];
 

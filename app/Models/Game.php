@@ -4,6 +4,18 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
+/**
+ * @property-read int $awayTeamId
+ * @property-read Carbon $endTime
+ * @property-read int $gameType
+ * @property-read int $homeTeamId
+ * @property-read int $playoffGameNumber
+ * @property-read int $playoffRound
+ * @property-read string $recapLong
+ * @property-read string $recapShort
+ * @property-read Carbon $startTime
+ * @property-read string $venue
+ */
 class Game
 {
     private int $awayTeamId;
@@ -55,6 +67,8 @@ class Game
 
     /**
      * return the game data as an array
+     *
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

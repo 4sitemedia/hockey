@@ -5,6 +5,11 @@ namespace App\Models;
 use App\Http\External\NHLSchedule;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * @property string $currentDate
+ * @property string $nextDate
+ * @property string $previousDate
+ */
 class DateSchedule extends AbstractSchedule
 {
     protected string $currentDate = '';
@@ -32,6 +37,8 @@ class DateSchedule extends AbstractSchedule
 
     /**
      * get the dates related to the most recent request
+     *
+     * @return array<string, string>
      */
     public function getDates(): array
     {

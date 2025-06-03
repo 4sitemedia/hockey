@@ -7,7 +7,7 @@ class ScheduleControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_returns_a_successful_response()
+    public function test_returns_a_successful_response(): void
     {
         $response = $this->get('/schedule');
 

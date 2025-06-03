@@ -17,10 +17,14 @@ class ScheduleController extends Controller
         $teams = new Teams;
         $teams->fetchTeams();
 
-        try {
-            $requestDate = new \DateTime($date);
-            $date = $requestDate->format('Y-m-d');
-        } catch (\Exception $exception) {
+        if (is_string($date)) {
+            try {
+                $requestDate = new \DateTime($date);
+                $date = $requestDate->format('Y-m-d');
+            } catch (\Exception $exception) {
+                $date = 'now';
+            }
+        } else {
             $date = 'now';
         }
 

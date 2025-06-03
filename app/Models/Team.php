@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+/**
+ * @property-read bool $active
+ * @property-read string $code
+ * @property-read string $fullName
+ * @property-read int $id
+ * @property-read string $location
+ * @property-read string $name
+ */
 class Team
 {
     private readonly bool $active;
@@ -39,6 +47,8 @@ class Team
 
     /**
      * return the team data as an array
+     *
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
