@@ -1,6 +1,7 @@
 export interface GameInterface {
     awayTeamId: number;
     endTime: string;
+    gameId: number;
     gameType: number;
     homeTeamId: number;
     playoffGameNumber: number;

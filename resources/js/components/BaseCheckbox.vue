@@ -2,7 +2,8 @@
 interface BaseCheckboxProps {
     handler?: (event: Event) => void;
     label: string;
-    value: number | string;
+    name?: string;
+    value?: number | string;
 }
 
 const model = defineModel();
@@ -14,6 +15,7 @@ const props = defineProps<BaseCheckboxProps>();
         <input
             type="checkbox"
             v-model="model"
+            :name="props.name"
             :value="props.value"
             v-on:click="handler"
             class="relative bottom-[2px] mr-[2px] align-middle"

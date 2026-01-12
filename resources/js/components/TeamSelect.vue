@@ -4,7 +4,7 @@ import { useScheduleData } from '@/composables/schedule';
 import { useTeamData } from '@/composables/teams';
 
 const { resetFilters } = useFilters();
-const { filteredTeams } = useTeamData();
+const { filteredTeams, selectedTeam } = useTeamData();
 const { fetchTeamSchedule } = useScheduleData();
 
 const onSelectTeam = (event: Event) => {
@@ -12,6 +12,7 @@ const onSelectTeam = (event: Event) => {
 
     resetFilters();
     fetchTeamSchedule(team);
+    selectedTeam.value = team;
 };
 </script>
 

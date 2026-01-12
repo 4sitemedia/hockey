@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\External\NHLSchedule;
-use Illuminate\Support\Facades\Cache;
+use App\Services\DateScheduleService;
 
 /**
  * @property string $currentDate
@@ -12,27 +11,15 @@ use Illuminate\Support\Facades\Cache;
  */
 class DateSchedule extends AbstractSchedule
 {
-    protected string $currentDate = '';
+    private string $date;
 
-    protected string $nextDate = '';
+    private DateScheduleService $dateScheduleService;
 
-    protected string $previousDate = '';
-
-    /**
-     * get the schedule for the given date from the api
-     */
-    public function fetchSchedule(string $value): void
+    public function __construct(DateScheduleService $dateScheduleService, string $value)
     {
-        $scheduleAPI = new NHLSchedule;
-
-        $response = Cache::remember("$value-scores", 14400, function () use ($scheduleAPI, $value) {
-            return $scheduleAPI->getDateSchedule($value);
-        });
-
-        $this->games = $scheduleAPI->parseResponse($response);
-        $this->currentDate = array_key_exists('currentDate', $response) ? $response['currentDate'] : '';
-        $this->nextDate = array_key_exists('nextDate', $response) ? $response['nextDate'] : '';
-        $this->previousDate = array_key_exists('prevDate', $response) ? $response['prevDate'] : '';
+        $this->date = $value;
+        $this->dateScheduleService = $dateScheduleService;
+        $this->games = $this->dateScheduleService->fetch($this->date);
     }
 
     /**
@@ -42,10 +29,6 @@ class DateSchedule extends AbstractSchedule
      */
     public function getDates(): array
     {
-        return [
-            'previousDate' => $this->previousDate,
-            'currentDate' => $this->currentDate,
-            'nextDate' => $this->nextDate,
-        ];
+        return $this->dateScheduleService->dates($this->date);
     }
 }

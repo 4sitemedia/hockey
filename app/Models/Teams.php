@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\External\NHLTeams;
-use Illuminate\Support\Facades\Cache;
+use App\Services\TeamsService;
 
 /**
  * @property array<Team> $name
@@ -15,21 +14,9 @@ class Teams
      */
     private array $teams = [];
 
-    /***
-     * get the teams from the api
-     *
-     * @return void
-     */
-    public function fetchTeams(): void
+    public function __construct(TeamsService $teamsService)
     {
-        $this->teams = Cache::remember('teams', 86400, function (): array {
-            $teamsAPI = new NHLTeams;
-            $response = $teamsAPI->getTeams();
-
-            $teams = $teamsAPI->parseResponse($response);
-
-            return $this->sortTeams($teams);
-        });
+        $this->teams = $this->sortTeams($teamsService->fetch());
     }
 
     /**

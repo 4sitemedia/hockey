@@ -9,18 +9,11 @@ import BaseLayout from '@/layouts/app/BaseLayout.vue';
 
         <div class="mt-4">
             <h2 class="text-2xl font-bold">Features</h2>
-            <ul>
+            <ul class="ml-4 list-disc">
                 <li>View NHL schedules by date and team</li>
                 <li>No spoilers replay links</li>
                 <li>Filter team schedule by game type</li>
-            </ul>
-
-            <h2 class="mt-4 font-bold">TODO</h2>
-            <ul>
-                <li>Add ability to select date with a calendar</li>
-                <li>Add support for previous seasons</li>
-                <li>Export schedule</li>
-                <li>Unit Tests</li>
+                <li>Export team schedule in iCalendar format</li>
             </ul>
         </div>
     </BaseLayout>

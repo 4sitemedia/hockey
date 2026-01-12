@@ -7,6 +7,7 @@ use Carbon\Carbon;
 /**
  * @property-read int $awayTeamId
  * @property-read Carbon $endTime
+ * @property-read int $gameId
  * @property-read int $gameType
  * @property-read int $homeTeamId
  * @property-read int $playoffGameNumber
@@ -21,6 +22,8 @@ class Game
     private int $awayTeamId;
 
     private Carbon $endTime;
+
+    private int $gameId;
 
     private int $gameType;
 
@@ -44,6 +47,7 @@ class Game
     public function __construct(
         int $awayTeamId,
         Carbon $endTime,
+        int $gameId,
         int $gameType,
         int $homeTeamId,
         int $playoffGameNumber,
@@ -55,6 +59,7 @@ class Game
     ) {
         $this->awayTeamId = $awayTeamId;
         $this->endTime = $endTime;
+        $this->gameId = $gameId;
         $this->gameType = $gameType;
         $this->homeTeamId = $homeTeamId;
         $this->playoffGameNumber = $playoffGameNumber;
@@ -63,6 +68,11 @@ class Game
         $this->recapShort = $recapShort;
         $this->startTime = $startTime;
         $this->venue = $venue;
+    }
+
+    public function __get(string $name): mixed
+    {
+        return $this->$name;
     }
 
     /**
@@ -75,6 +85,7 @@ class Game
         return [
             'awayTeamId' => $this->awayTeamId,
             'endTime' => $this->endTime,
+            'gameId' => $this->gameId,
             'gameType' => $this->gameType,
             'homeTeamId' => $this->homeTeamId,
             'playoffGameNumber' => $this->playoffGameNumber,

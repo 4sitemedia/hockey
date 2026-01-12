@@ -24,6 +24,19 @@ const buttonCSS: ComputedRef<string> = computed(() => {
     return '';
 });
 
+const buttonText: ComputedRef<string> = computed(() => {
+    switch (props.type) {
+        case 'currentDate':
+            return props.date;
+        case 'nextDate':
+            return `${props.date}&nbsp;&nbsp;&#10940;`;
+        case 'previousDate':
+            return `&#10939;&nbsp;&nbsp;${props.date}`;
+    }
+
+    return '';
+});
+
 const onClickButton = () => {
     fetchDateSchedule(props.date);
 };
@@ -35,7 +48,6 @@ const onClickButton = () => {
         class="cursor-pointer rounded-sm border border-gray-400 p-2"
         :class="buttonCSS"
         v-on:click="onClickButton"
-    >
-        {{ props.date }}
-    </button>
+        v-html="buttonText"
+    />
 </template>
