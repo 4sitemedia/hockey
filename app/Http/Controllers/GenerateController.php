@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Teams;
-use App\Services\ExportICal;
+use App\Services\ExportICalService;
 use App\Services\TeamsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class GenerateController extends Controller
 {
-    public function index(Request $request, ExportICal $export, TeamsService $teamsService): Response
+    public function index(Request $request, ExportICalService $export, TeamsService $teamsService): Response
     {
         $teams = new Teams($teamsService);
 

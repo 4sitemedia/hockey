@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class ExportICal implements ExportContract
+class ExportICalService implements ExportContract
 {
     const DATE_FORMAT = 'Ymd\THis\Z';
 
@@ -65,7 +65,7 @@ class ExportICal implements ExportContract
         ];
 
         if ($this->exportVenue) {
-            $event[] = 'LOCATION:'.$this->buildLocation($game);
+            $event[] = 'LOCATION:'.$this->transformText($game->venue);
         }
 
         $event[] = 'UID:'.$game->gameId;
@@ -88,19 +88,6 @@ class ExportICal implements ExportContract
         ];
     }
 
-    public function buildLocation(Game $game): string
-    {
-        if ($this->textTransform === ExportContract::TEXT_TRANSFORM_LOWERCASE) {
-            return strtolower($game->venue);
-        }
-
-        if ($this->textTransform === ExportContract::TEXT_TRANSFORM_UPPERCASE) {
-            return strtoupper($game->venue);
-        }
-
-        return $game->venue;
-    }
-
     /**
      * generate the event summary
      *
@@ -112,27 +99,19 @@ class ExportICal implements ExportContract
         $pieces = [];
 
         if ($this->exportLocation && $this->exportName) {
-            $pieces[] = $homeTeam['fullName'];
             $pieces[] = $awayTeam['fullName'];
+            $pieces[] = $homeTeam['fullName'];
         } elseif ($this->exportLocation) {
-            $pieces[] = $homeTeam['location'];
             $pieces[] = $awayTeam['location'];
+            $pieces[] = $homeTeam['location'];
         } elseif ($this->exportName) {
-            $pieces[] = $homeTeam['name'];
             $pieces[] = $awayTeam['name'];
+            $pieces[] = $homeTeam['name'];
         }
 
         $summary = implode(' at ', $pieces);
 
-        if ($this->textTransform === ExportContract::TEXT_TRANSFORM_LOWERCASE) {
-            return strtolower($summary);
-        }
-
-        if ($this->textTransform === ExportContract::TEXT_TRANSFORM_UPPERCASE) {
-            return strtoupper($summary);
-        }
-
-        return $summary;
+        return $this->transformText($summary);
     }
 
     /**
@@ -185,5 +164,18 @@ class ExportICal implements ExportContract
         } else {
             $this->textTransform = ExportContract::TEXT_TRANSFORM_NONE;
         }
+    }
+
+    public function transformText(string $text): string
+    {
+        if ($this->textTransform === ExportContract::TEXT_TRANSFORM_LOWERCASE) {
+            return strtolower($text);
+        }
+
+        if ($this->textTransform === ExportContract::TEXT_TRANSFORM_UPPERCASE) {
+            return strtoupper($text);
+        }
+
+        return $text;
     }
 }
