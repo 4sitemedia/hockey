@@ -10,4 +10,16 @@ class TeamSchedule extends AbstractSchedule
     {
         $this->games = $teamScheduleService->fetch($value);
     }
+
+    /**
+     * convert the game data objects to arrays
+     *
+     * @return array<array<string, mixed>>
+     */
+    public function getGamesArray(): array
+    {
+        return array_map(function (Game $game) {
+            return $game->toArray();
+        }, $this->games);
+    }
 }

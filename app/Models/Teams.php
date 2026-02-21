@@ -20,6 +20,18 @@ class Teams
     }
 
     /**
+     * get an array of the team ids
+     *
+     * @return array<int>
+     */
+    public function getTeamIds(): array
+    {
+        return array_map(function (Team $team) {
+            return $team->id;
+        }, $this->teams);
+    }
+
+    /**
      * get an array of teams mapped by id
      *
      * @return array<int, array<string, mixed>>

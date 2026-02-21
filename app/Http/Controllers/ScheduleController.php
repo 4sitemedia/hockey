@@ -34,7 +34,7 @@ class ScheduleController extends Controller
 
         return Inertia::render('Schedule', [
             'dates' => $schedule->getDates(),
-            'games' => $schedule->getGamesArray(),
+            'games' => $schedule->getGamesArray($teams),
             'teamMap' => $teams->getTeamMap(),
         ]);
     }

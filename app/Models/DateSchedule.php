@@ -31,4 +31,22 @@ class DateSchedule extends AbstractSchedule
     {
         return $this->dateScheduleService->dates($this->date);
     }
+
+    /**
+     * convert the valid nhl game data objects to arrays
+     *
+     * @return array<array<string, mixed>>
+     */
+    public function getGamesArray(Teams $teams): array
+    {
+        $teamIds = $teams->getTeamIds();
+
+        return array_reduce($this->games, function (array $games, Game $game) use ($teamIds) {
+            if (in_array($game->awayTeamId, $teamIds) && in_array($game->homeTeamId, $teamIds)) {
+                $games[] = $game->toArray();
+            }
+
+            return $games;
+        }, []);
+    }
 }
