@@ -19,19 +19,21 @@ const linkCSS = (url: string) => {
 </script>
 
 <template>
-    <div class="flex items-center gap-4">
-        <div class="flex gap-2">
+    <div class="flex flex-wrap items-center gap-4">
+        <div class="flex w-full justify-between gap-2 sm:w-auto">
             <Link
                 v-for="(item, index) in links"
                 :key="index"
                 :href="item.url"
-                class="border border-gray-200 p-4 hover:bg-gray-400"
+                class="border-r border-b border-l border-gray-200 p-4 hover:bg-gray-400"
                 :class="linkCSS(item.url)"
             >
                 {{ item.label }}
             </Link>
         </div>
-        <slot />
+        <div class="flex w-full justify-between gap-4 sm:w-auto">
+            <slot />
+        </div>
     </div>
     <div v-if="message" class="my-4 rounded-lg border border-rose-300 bg-rose-100 p-4">
         {{ message }}

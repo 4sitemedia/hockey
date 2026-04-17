@@ -15,7 +15,7 @@ class TeamScheduleService extends AbstractScheduleService
      */
     public function fetch(string $value): array
     {
-        $response = Cache::remember("schedule-$value", 86400, function () use ($value) {
+        $response = Cache::remember("schedule-$value", config('app.cache_timeout'), function () use ($value) {
             $scheduleAPI = new NHLSchedule;
 
             return $scheduleAPI->getTeamSchedule($value);

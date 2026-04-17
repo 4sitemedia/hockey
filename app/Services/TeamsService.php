@@ -16,7 +16,7 @@ class TeamsService implements TeamsContract
      */
     public function fetch(): array
     {
-        return Cache::remember('teams', 86400, function (): array {
+        return Cache::remember('teams', config('app.cache_timeout'), function (): array {
             $teamsAPI = new NHLTeams;
             $response = $teamsAPI->getTeams();
 

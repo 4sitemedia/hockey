@@ -54,7 +54,7 @@ abstract class AbstractScheduleService implements ScheduleContract
 
             $games[] = $game;
 
-            Cache::add("game-$gameId", $game, 86400);
+            Cache::add("game-$gameId", $game, config('app.cache_timeout'));
         }
 
         return $games;

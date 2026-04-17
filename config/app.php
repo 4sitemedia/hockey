@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'cache_timeout' => env('APP_CACHE_TIMEOUT', ''),
     'google' => env('APP_GOOGLE_TAG', ''),
 
     /*

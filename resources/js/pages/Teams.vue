@@ -18,9 +18,11 @@ const shouldDisplay: ComputedRef<boolean> = computed((): boolean => {
 <template>
     <BaseLayout>
         <HeaderNavigation>
-            <TeamSelect />
-            <TeamScheduleFilter v-if="shouldDisplay" />
-            <ScheduleExportDialog v-if="shouldDisplay" :games="filteredGames" class="ml-auto" />
+            <div class="flex flex-wrap items-center gap-4">
+                <TeamSelect />
+                <ScheduleExportDialog v-if="shouldDisplay" :games="filteredGames" />
+                <TeamScheduleFilter v-if="shouldDisplay" />
+            </div>
         </HeaderNavigation>
 
         <ScheduleTable v-if="shouldDisplay" :games="filteredGames" class="mt-4" />
