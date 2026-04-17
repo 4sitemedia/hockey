@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title inertia>{{ config('app.name', 'NHL Schedules') }}</title>
+    <title data-inertia>{{ config('app.name', 'NHL Schedules') }}</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('app.google', '') }}"></script>
     <script type="text/javascript">
