@@ -39,9 +39,13 @@ const { getTeamFullName } = useTeamData();
                 <td>{{ getDate(game.startTime) }}</td>
                 <td>
                     <div v-if="game.recapLong">
-                        <a :href="game.recapLong">Condensed Game</a>
+                        <a :href="game.recapLong" target="_blank" class="hover:underline"
+                            >Condensed Game</a
+                        >
                     </div>
-                    <div v-if="game.recapShort"><a :href="game.recapShort">Recap</a></div>
+                    <div v-if="game.recapShort">
+                        <a :href="game.recapShort" target="_blank" class="hover:underline">Recap</a>
+                    </div>
                 </td>
             </tr>
         </tbody>

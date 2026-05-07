@@ -17,8 +17,8 @@ const props = defineProps<BaseCheckboxProps>();
             v-model="model"
             :name="props.name"
             :value="props.value"
-            v-on:click="handler"
-            class="relative bottom-[2px] mr-[2px] align-middle"
+            v-on:change="handler"
+            class="relative bottom-0.5 mr-0.5 align-middle"
         />
         <span>{{ props.label }}</span>
     </label>

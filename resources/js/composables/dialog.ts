@@ -18,7 +18,7 @@ interface useDialogInterface {
 const fileFormat: Ref<FILE_TYPE> = ref<FILE_TYPE>(FILE_TYPE.ICAL);
 const includeTeamLocation: Ref<boolean> = ref(true);
 const includeTeamName: Ref<boolean> = ref(true);
-const includeVenue: Ref<boolean> = ref(false);
+const includeVenue: Ref<boolean> = ref(true);
 const transformText: Ref<string> = ref<string>('');
 
 export function useDialog(): useDialogInterface {
